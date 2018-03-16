@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title>JS Slideshow</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+		body{
+			background-color: #333366;
+		}
+		
+		#slideshow {
+			background-color: maroon;
+			min-height: 525px;
+			width: 1000px;
+			margin: 50px auto;
+			padding: 25px;
+		}
+
+		#bigPicDiv{
+			width: 800px;
+			height: 475px;
+			background-color: azure;
+			float: left;
+			overflow-y: scroll;
+		}
+
+		#thumbDiv{
+			width: 150px;
+			background-color: aqua;
+			height: 475px;
+			float: right;
+			overflow-y: scroll;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		#thumbDiv img {
+			cursor: pointer;
+		}
+
+		#thumbDiv img:hover{
+			filter: saturate(3);
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="slideshow">
+<!--
+		<div id="bigPicDiv"></div>
+	
+	 -->
+	</div>
+<!-- 	<section></section>
+	<main></main>
+	<aside></aside> -->
+	<script type="text/javascript">
+
+		// an array of image file names on the server
+		const pics = ['han0.jpg', 'han1.jpg', 'han2.jpg', 'han3.jpg', 'han4.jpg', 'han5.jpg', 'han6.jpg', 'han7.jpg', 'tang0.jpg', 'tang1.jpg', 'tang2.jpg', 'tang3.jpg', 'tang4.jpg', 'tang5.jpg', 'tang6.jpg', 'song0.jpg', 'song1.jpg', 'song2.jpg', 'song3.jpg', 'song4.jpg', 'song5.jpg', 'ming0.jpg', 'ming1.jpg', 'ming2.jpg', 'ming3.jpg', 'ming4.jpg', 'ming5.jpg', 'ming6.jpg', 'ming7.jpg', 'ming8.jpg', 'ming9.jpg' ];
+		
+		// import the one and only div on the page
+		const slideshow = document.getElementById('slideshow');
+		
+		// make a big div to hold the big pic
+		const bigPicDiv = document.createElement('div');
+		bigPicDiv.id = "bigPicDiv";
+
+		// output the div to the page (inside "slideshow")
+		slideshow.appendChild(bigPicDiv);
+
+		// make a starter image in the big pic div
+		const bigPic = new Image();
+		bigPic.src = "http://www.codeimmersives.com/images/chinese-porcelain/han0.jpg";
+
+		// output the image to page (inside "bigPicDiv")
+		bigPicDiv.appendChild(bigPic);
+
+		// make a div for the thumbs
+		const thumbDiv = document.createElement('div');
+		thumbDiv.id = "thumbDiv";
+		slideshow.appendChild(thumbDiv);
+
+		// const thumbPic = new Image(); // a pic for the thumb div
+		// thumbPic.src = "http://www.codeimmersives.com/images/chinese-porcelain/han0.jpg";
+		// thumbDiv.appendChild(thumbPic); 
+
+		// do a loop that goes through the pics array
+		// each time through make another image
+		for(let i = 0; i < pics.length; i++){
+
+			// make a thumb
+			let thumbPic = new Image(); // a pic for the thumb div
+			thumbPic.src = "http://www.codeimmersives.com/images/chinese-porcelain/" + pics[i];
+			thumbDiv.appendChild(thumbPic);
+			// make the thumbs clickable
+			thumbDiv.addEventListener('click', swapPic);
+		} // end loop
+	
+	function swapPic(){
+		// what happens when user clicks thumb
+		// event.target = "thing that got clicked"
+		bigPic.src = event.target.src; // copy and paste src
+	}
+	</script>
+
+</body>
+</html>
